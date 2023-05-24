@@ -1,46 +1,56 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <title>Relatório dos Grupos de Concorrência</title>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rayane Carvalho</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="https://unpkg.com/feather-icons"></script>
-</head>
+        <link rel="stylesheet" type="text/css" href="../resources/css/arquivo.css"/>
 
-<body>
-    <header>
-        <div class="img-logo-if">
-            <img src="assets/logo.png" alt="logo">
+    </head>
+    <body>
+      <header>
+        <div class="container-img">
+          <img class= "img-logo" src="C:\sisps\sisps\public\assets\img\if_logo_horizontal.png" alt="Logo do Instituto Federal">
         </div>
-        <div class="img-logo-copese">
-            <img src="assets/logo.png" alt="logo">
+      </header>
+      <main>
+        <div class="container-title">
+          <h3 class="title" alt="Título do relatório">Grupos de Concorrência</h3>
         </div>
+        <div>
+          <table>
+            <tr>
+              <th>Sigla</th>
+              <th>Descrição</th>
+              <th>Status</th>
+            </tr>
+            @foreach($grupoConcorrencias as $grupoConcorrencia)
+              <tr>
+                <td>{{$grupoConcorrencia->sigla}}</td>
+                <td>{!! $grupoConcorrencia->descricao !!}</td>
+                <td>{{$grupoConcorrencia->status == 1 ? 'Ativo' : 'Inativo'}}</td>
+              </tr>
+            @endforeach
+          </table>
+        </div>
+      </main>
+       
+
+      <div>
         <hr size="0.5" width="100%" noshade>
-    </header>
+        <footer class="footer">
+          <script>
+            if ( isset($pdf) ) {
+                $pdf->page_text(740, 550, "Página: {PAGE_NUM} de {PAGE_COUNT}", 10,  array(0,0,0)); 
+            }   
+        </script>
+            {{-- <p>Processado em: 16/05/2023 09:40</p> Colocar a data e hora da impressão
+            <p>Página 1 de 10</p> Paginação com o dom --}}
+        </footer>
+      </div>
 
-    </section>
-    <section id="services" class="services">
-        <hr size="2" width="100%" noshade>
-        <h1 class="title-green">Serviços</h1>
-        <hr size="2" width="100%" noshade>
-        <div class="services-container">
-            <div class="service-card">
-                <img src="assets/desenvolvedor.png" alt="Ícone de desenvolvimento">
-                <h2>Desenvolvimento de Sites</h2>
-                <p>Desenvolvimento de sites empresariais. Faça sua empresa ser facilmente encontrada online.</p>
-            </div>
-        </div>
-    </section>
-    <hr size="0.5" width="100%" noshade>
-    <footer>
-        <p>Processado em: 16/05/2023 09:40</p>
-        <p>Página 1 de 10</p>
-    </footer>
-    <script>
+      <script>
         feather.replace()
-    </script>
-</body>
-
+      </script>
+    </body>
 </html>
